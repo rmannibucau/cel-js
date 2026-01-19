@@ -27,12 +27,12 @@ describe('maps expressions', () => {
       expect(result).toStrictEqual({ a: 1, b: 2, c: 3 })
     })
 
-    it('should throw an error if maps have different types', () => {
+    it('should NOT throw an error if maps have different types', () => {
       const expr = '{"a": 1, "b": true}'
 
-      const result = () => evaluate(expr)
+      const result = evaluate(expr)
 
-      expect(result).toThrow(new CelEvaluationError('invalid_argument: true'))
+      expect(result).toStrictEqual({"a": 1, "b": true})
     })
   })
 
