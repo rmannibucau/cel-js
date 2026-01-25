@@ -585,10 +585,11 @@ export class CelVisitor
     if (!ctx.keyValues) {
       return {}
     }
-    let valueType = {};
+    const valueType: Record<string, CelType> = {}
+
     for (const keyValuePair of ctx.keyValues) {
-      const [key, value] = this.visit(keyValuePair)
-      if (!valueType[key] ) {
+      const [key, value] = this.visit(keyValuePair) as [string, unknown]
+      if (!valueType[key]) {
         valueType[key] = getCelType(value)
       }
       if (getCelType(key) != CelType.string) {
